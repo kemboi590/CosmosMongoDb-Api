@@ -43,14 +43,16 @@ public class BooksController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateBook(string id, Book book)
+    public async Task<IActionResult> UpdateBook(string id, Book updatedBook)
     {
-        var bookToUpdate = await _context.Books.Find<Book>(book => book.Id == id).FirstOrDefaultAsync();
+        var bookToUpdate = await _context.Books.Find(book => book.Id == id).FirstOrDefaultAsync();
         if (bookToUpdate is null)
         {
             return NotFound();
         }
-        await _context.Books.ReplaceOneAsync(book => book.Id == id, book);
+
+        updatedBook.Id = bookToUpdate.Id;
+        await _context.Books.ReplaceOneAsync(book => book.Id == id, updatedBook);
         return NoContent();
     }
 

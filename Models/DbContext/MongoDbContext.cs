@@ -1,12 +1,6 @@
 using MongoDB.Driver;
 
 namespace CosmosMongoDBApi.Models.DbContext;
-// public interface IMongoDbContext
-// {
-//     IMongoCollection<Book> Books { get; }
-//     IMongoCollection<Author> Authors { get; }
-// }
-
 
 public class MongoDbContext
 {

@@ -1,9 +1,12 @@
 using System;
+// CosmosMongoDBApi.DTO
 using CosmosMongoDBApi.DTO;
 using CosmosMongoDBApi.Models;
 using CosmosMongoDBApi.Models.DbContext;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
+
 
 namespace CosmosMongoDBApi.Controllers;
 
@@ -70,28 +73,32 @@ public class AuthorsController : ControllerBase
         return NotFound();
     }
 
-    // [HttpGet("author-books")]
-    // public async Task<IActionResult> GetAuthorBookInfo()
-    // {
-    //     var aggregation = _context.Books.Aggregate()
-    //         .Lookup<Book, Author, AuthorBookInfo>(
-    //             _context.Authors,
-    //             book => book.AuthorId,
-    //             author => author.Id,
-    //             result => result.AuthorInfo
-    //         )
-    //         .Project(authorBook => new AuthorBookInfo
-    //         {
-    //             AuthorName = authorBook.AuthorInfo.FirstOrDefault().Name,
-    //             AuthorBio = authorBook.AuthorInfo.FirstOrDefault().Bio,
-    //             BookTitle = authorBook.Title,
-    //             PublishedYear = authorBook.PublishedYear
-    //         })
-    //         .ToListAsync();
 
-    //     var result = await aggregation;
+    [HttpGet("author-books")]
+    public async Task<IActionResult> GetAuthorBookInfo()
+    {
+        // Fetch all books
+        var books = await _context.Books.Find(book => true).ToListAsync();
 
-    //     return Ok(result);
-    // }
+        // Fetch all authors
+        var authors = await _context.Authors.Find(author => true).ToListAsync();
+
+        // Convert authors to a dictionary for quick look-up
+        var authorDictionary = authors.ToDictionary(a => a.Id!, a => a);
+
+        // map the books to your DTO using the author dictionary
+        var authorBookDTOs = books.Select(book => new AuthorBookDTO
+        {
+            AuthorName = authorDictionary.TryGetValue(book.AuthorId, out var author) ? author.Name : "Unknown",
+            AuthorBio = authorDictionary.TryGetValue(book.AuthorId, out author) ? author.Bio : "No Bio Available",
+            BookTitle = book.Title,
+            PublishedYear = book.PublishedYear,
+            AuthorId = book.AuthorId
+        }).ToList();
+
+        // Return the result
+        return Ok(authorBookDTOs);
+    }
+
 
 }

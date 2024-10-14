@@ -1,6 +1,63 @@
-@CosmosMongoDBApi_HostAddress = http://localhost:5032
+@CosmosMongoDBApi_HostAddress = https://localhost:7002/api
 
-GET {{CosmosMongoDBApi_HostAddress}}/weatherforecast/
+### Create an Author
+POST  {{CosmosMongoDBApi_HostAddress}}/Authors
+Content-Type: application/json
+
+{
+  "name": "Denis Kathuri",
+  "bio": "CTO Opesha Solutions"
+}
+
+### Get all Authors
+GET {{CosmosMongoDBApi_HostAddress}}/Authors
+
+### Get Author by Id
+GET {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+
+### Update Author
+PUT {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+Content-Type: application/json
+
+{
+  "name": "Denis Wachira",
+  "bio": "CTO Opesha Solutions"
+}
+
+### Delete Author
+DELETE {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+
+
+### Create a Book
+POST {{CosmosMongoDBApi_HostAddress}}/Books
+Content-Type: application/json
+
+{
+  "title": "5AM Club",
+  "publishedYear": "2024-10-14",
+  "authorId": "670cafe8805857eb7c085ec8"
+}
+
+
+### Get all Books
+GET {{CosmosMongoDBApi_HostAddress}}/Books
 Accept: application/json
 
-###
+### Get Book by Id
+GET {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+
+### Update Book
+PUT {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+Content-Type: application/json
+
+{
+  "title": "4AM Club",
+  "publishedYear": "2024-10-14",
+  "authorId": "670cafe8805857eb7c085ec8"
+}
+
+### Delete Book
+DELETE {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+
+### Get Books by Author
+GET {{CosmosMongoDBApi_HostAddress}}/Authors/author-books

@@ -1,5 +1,3 @@
-
-
 using CosmosMongoDBApi.Models.DbContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +5,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<MongoDbContext>();
 
 builder.Services.AddControllers();
-// builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
-// builder.Services.AddKeyedScope
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
