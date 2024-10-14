@@ -1,10 +1,8 @@
-using System;
-// CosmosMongoDBApi.DTO
+
 using CosmosMongoDBApi.DTO;
 using CosmosMongoDBApi.Models;
 using CosmosMongoDBApi.Models.DbContext;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 
@@ -17,7 +15,7 @@ public class AuthorsController : ControllerBase
 
     private readonly MongoDbContext _context;
 
-    public AuthorsController(MongoDbContext context)
+    public AuthorsController(MongoDbContext context) //passing the context to the controller
     {
         _context = context;
     }

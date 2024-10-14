@@ -13,10 +13,10 @@ Content-Type: application/json
 GET {{CosmosMongoDBApi_HostAddress}}/Authors
 
 ### Get Author by Id
-GET {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+GET {{CosmosMongoDBApi_HostAddress}}/Authors/670cffe3d771964ded5e8b9d
 
 ### Update Author
-PUT {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+PUT {{CosmosMongoDBApi_HostAddress}}/Authors/670cffe3d771964ded5e8b9d
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ### Delete Author
-DELETE {{CosmosMongoDBApi_HostAddress}}/Authors/670cb05e805857eb7c085ec9
+DELETE {{CosmosMongoDBApi_HostAddress}}/Authors/670cffe3d771964ded5e8b9d
 
 
 ### Create a Book
@@ -44,10 +44,10 @@ GET {{CosmosMongoDBApi_HostAddress}}/Books
 Accept: application/json
 
 ### Get Book by Id
-GET {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+GET {{CosmosMongoDBApi_HostAddress}}/Books/670d00acd771964ded5e8b9e
 
 ### Update Book
-PUT {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+PUT {{CosmosMongoDBApi_HostAddress}}/Books/670d00acd771964ded5e8b9e
 Content-Type: application/json
 
 {
@@ -57,7 +57,7 @@ Content-Type: application/json
 }
 
 ### Delete Book
-DELETE {{CosmosMongoDBApi_HostAddress}}/Books/670cb11a805857eb7c085eca
+DELETE {{CosmosMongoDBApi_HostAddress}}/Books/670d00acd771964ded5e8b9e
 
 ### Get Books by Author
 GET {{CosmosMongoDBApi_HostAddress}}/Authors/author-books
